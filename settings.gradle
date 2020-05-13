@@ -1,0 +1,2 @@
+rootProject.name='CMI_AT154_test'
+include ':app'

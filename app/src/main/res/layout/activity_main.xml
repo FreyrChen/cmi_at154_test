@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TableLayout
+        android:id="@+id/ALL_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/table_v_divider"
+        android:showDividers="middle|beginning|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:id="@+id/Port_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/table_h_divider"
+            android:showDividers="middle|beginning|end"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/Port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Port"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Description"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/Result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Result"
+                android:textAlignment="center"
+                tools:visibility="invisible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/COM1_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/table_h_divider"
+            android:showDividers="middle|beginning|end"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/COM1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COM1"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/COM1_Port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COM1_Port"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/COM1_Result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/checkbox_on_background"
+                tools:visibility="visible" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/COM2_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/table_h_divider"
+            android:showDividers="middle|beginning|end"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/COM2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COM2"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/COM2_Port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COM2_Port"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/COM2_Result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/btn_dialog"
+                tools:visibility="visible" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/COM3_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/table_h_divider"
+            android:showDividers="middle|beginning|end"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/COM3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COM3"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/COM3_Port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COM3_Port"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/COM3_Result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/btn_dialog"
+                tools:visibility="visible" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/COM4_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/table_h_divider"
+            android:showDividers="middle|beginning|end"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/COM4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COM4"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/COM4_Port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="COM4_Port"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/COM4_Result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/btn_dialog"
+                tools:visibility="visible" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/USB_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/table_h_divider"
+            android:showDividers="middle|beginning|end"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/USB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="USB"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/USB_Port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="USB_Port"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/USB_Result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/btn_dialog"
+                tools:visibility="visible" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/BT_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/table_h_divider"
+            android:showDividers="middle|beginning|end">
+
+            <TextView
+                android:id="@+id/BT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="BT"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/BT_Port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="BT_Port"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/BT_Result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                app:srcCompat="@android:drawable/btn_dialog" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/WIFI_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/table_h_divider"
+            android:showDividers="middle|beginning|end">
+
+            <TextView
+                android:id="@+id/WIFI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="WIFI"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/WIFI_Port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="WIFI_Port"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/WIFI_Result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                app:srcCompat="@android:drawable/btn_dialog" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/LTE_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/table_h_divider"
+            android:showDividers="middle|beginning|end">
+
+            <TextView
+                android:id="@+id/LTE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4G"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/LTE_Port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4G_Port"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/LTE_Result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                app:srcCompat="@android:drawable/btn_dialog" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/SD_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:divider="@drawable/table_h_divider"
+            android:showDividers="middle|beginning|end">
+
+            <TextView
+                android:id="@+id/SD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SD"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/SD_Port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SD_Port"
+                android:textAlignment="center" />
+
+            <ImageView
+                android:id="@+id/SD_Result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                app:srcCompat="@android:drawable/btn_dialog" />
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
