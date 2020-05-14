@@ -7,10 +7,16 @@ import android.os.Bundle;
 
 import android.widget.ImageView;
 
+import Hardware.Hardware_Test;
+
+import android.util.Log;
+
 public class MainActivity extends AppCompatActivity {
 
+    Hardware_Test hardware_test = new Hardware_Test();
+
     private ImageView COM1_image, COM2_image, COM3_image,
-            COM4_image, USB_image, BT_image,
+            COM4_image, USB_image, Ethernet_image,
             WIFI_image, LTE_image, SD_image;
 
     @Override
@@ -23,15 +29,17 @@ public class MainActivity extends AppCompatActivity {
         COM3_image = (ImageView)findViewById(R.id.COM3_Result);
         COM4_image = (ImageView)findViewById(R.id.COM4_Result);
         USB_image = (ImageView)findViewById(R.id.USB_Result);
-        BT_image = (ImageView)findViewById(R.id.BT_Result);
+        Ethernet_image = (ImageView)findViewById(R.id.Ethernet_Result);
         WIFI_image = (ImageView)findViewById(R.id.WIFI_Result);
         LTE_image = (ImageView)findViewById(R.id.LTE_Result);
         SD_image = (ImageView)findViewById(R.id.SD_Result);
 
-        this.setResult_image();
+        this.com_test();
+        this.wifi_test();
+        this.ethernet_test();
     }
 
-    private void setResult_image() {
+    private void com_test() {
         if ((ReturnCOM1Result()) == 0) {
             COM1_image.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.btn_dialog));
         } else {
@@ -54,6 +62,41 @@ public class MainActivity extends AppCompatActivity {
             COM4_image.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.btn_dialog));
         } else {
             COM4_image.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.checkbox_on_background));
+        }
+    }
+
+    private void wifi_test(){
+        switch (hardware_test.wifi_status(MainActivity.this)) {
+            case -1:
+                Log.i("System.out", "wfi error");
+                WIFI_image.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.btn_dialog));
+                break;
+            case 0:
+                Log.i("System.out", "wfi closeing...");
+                WIFI_image.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.btn_dialog));
+                break;
+            case 1:
+                Log.i("System.out", "wfi closed...");
+                WIFI_image.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.btn_dialog));
+                break;
+            case 2:
+                Log.i("System.out", "wfi opening...");
+                WIFI_image.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.btn_dialog));
+                break;
+            case 3:
+                Log.i("System.out", "wfi opened...");
+                WIFI_image.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.checkbox_on_background));
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void ethernet_test() {
+        if (hardware_test.mobile_network_status(MainActivity.this)){
+            Ethernet_image.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.checkbox_on_background));
+        } else {
+            Ethernet_image.setImageDrawable(ContextCompat.getDrawable(this, android.R.drawable.btn_dialog));
         }
     }
 

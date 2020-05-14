@@ -228,7 +228,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/BT_Layout"
+            android:id="@+id/ETH_Layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -236,23 +236,23 @@
             android:showDividers="middle|beginning|end">
 
             <TextView
-                android:id="@+id/BT"
+                android:id="@+id/Ethernet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="BT"
+                android:text="Ethernet"
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/BT_Port"
+                android:id="@+id/Ethernet_Port"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="BT_Port"
+                android:text="Ethernet_Port"
                 android:textAlignment="center" />
 
             <ImageView
-                android:id="@+id/BT_Result"
+                android:id="@+id/Ethernet_Result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

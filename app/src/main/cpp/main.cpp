@@ -79,8 +79,8 @@ static int safety_read(int fd, char *read_data, unsigned int data_len) {
         len += read(fd, read_data + len, 1);
         data_len--;
     }
-    LOGI("%s", read_data);
-    LOGI("%d", len);
+    //LOGI("%s", read_data);
+    //LOGI("%d", len);
 
     return len;
 }
