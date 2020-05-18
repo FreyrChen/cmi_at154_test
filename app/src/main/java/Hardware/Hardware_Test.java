@@ -155,4 +155,10 @@ public class Hardware_Test {
     public native int ReturnCOM4Result();
     public native int ReturnMIO1Result();
     public native int ReturnUSB1Result();
+
+    public native int OpenGPIO(int gpio_num);
+    public native int CloseGPIO(int gpio_num);
+    public native int SetGPIODirectory(int gpio_num, String[] directory);
+    public native int GetGPIOValue(int gpio_num);
+    public native int SetGPIOValue(int gpio_num, int value);
 }

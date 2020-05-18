@@ -168,6 +168,125 @@ Java_Hardware_Hardware_1Test_ReturnCOM4Result
     return test_com(COM4, COM3);
 }
 
+static int OpenCloseGpio(char *file_name, int gpio_num) {
+    int fd = -1 , ret = -1;
+    char gpio_num_chr[8] = "";
+
+    fd = open(file_name, O_WRONLY);
+    if (fd < 0) {
+        return -1;
+    }
+
+    sprintf(gpio_num_chr, "%d", gpio_num);
+
+    ret = write(fd, gpio_num_chr, sizeof(gpio_num_chr));
+    if(ret < 0) {
+        close(fd);
+        return -2;
+    }
+
+    sync();
+
+    close(fd);
+    return 0;
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_Hardware_Hardware_1Test_OpenGPIO
+        (JNIEnv *env, jobject thiz, jint gpio_num) {
+    return OpenCloseGpio("/sys/class/gpio/export", gpio_num);
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_Hardware_Hardware_1Test_CloseGPIO
+        (JNIEnv *env, jobject thiz, jint gpio_num) {
+    return OpenCloseGpio("/sys/class/gpio/unexport", gpio_num);
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_Hardware_Hardware_1Test_SetGPIODirectory
+        (JNIEnv *env, jobject thiz, jint gpio_num, jstring java_directory) {
+    int fd = -1, ret = -1;
+    char file_name[32] = "";
+    const char *directory;
+
+    directory = env->GetStringUTFChars(java_directory, 0);
+    if (directory == NULL) {
+        return -1;
+    }
+
+    sprintf(file_name, "/sys/class/gpio/gpio%d/directory", gpio_num);
+
+    fd = open(file_name, O_WRONLY);
+    if (fd < 0) {
+        return -1;
+    }
+
+    ret = write(fd, directory, sizeof(directory));
+    if (ret < 0) {
+        close(fd);
+        return -1;
+    }
+
+    sync();
+
+    close(fd);
+    return 0;
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_Hardware_Hardware_1Test_GetGPIOValue
+        (JNIEnv *env, jobject thiz, jint gpio_num) {
+    int fd = -1, ret = -1;
+    char file_name[32] = "", value;
+
+    sprintf(file_name, "/sys/class/gpio/gpio%d/value", gpio_num);
+
+    fd = open(file_name, O_RDONLY);
+    if (fd < 0) {
+        return -1;
+    }
+
+    read(fd, &value, 1);
+
+    sync();
+
+    close(fd);
+
+    return (value - 48);
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_Hardware_Hardware_1Test_SetGPIOValue
+        (JNIEnv *env, jobject thiz, jint gpio_num, jint value) {
+    int fd = -1, ret = -1;
+    char file_name[32] = "", value_chr[1];
+
+    sprintf(file_name, "/sys/class/gpio/gpio%d/value", gpio_num);
+    sprintf(value_chr, "%d", value);
+
+    fd = open(file_name, O_WRONLY);
+    if (fd < 0) {
+        return -1;
+    }
+
+    ret = write(fd, value_chr, sizeof(value_chr));
+    if (ret < 0) {
+        close(fd);
+        return -1;
+    }
+
+    sync();
+
+    close(fd);
+    return 0;
+}
+
 extern "C"
 JNIEXPORT jint JNICALL
 Java_Hardware_Hardware_1Test_ReturnMIO1Result
