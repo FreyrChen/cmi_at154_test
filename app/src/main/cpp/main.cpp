@@ -142,56 +142,43 @@ ERR0:
 
 extern "C"
 JNIEXPORT jint JNICALL
-        Java_com_example_cmi_1at154_1test_MainActivity_ReturnCOM1Result
+        Java_Hardware_Hardware_1Test_ReturnCOM1Result
         (JNIEnv *env, jobject thiz) {
     return test_com(COM1, COM2);
 }
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_example_cmi_1at154_1test_MainActivity_ReturnCOM2Result
+Java_Hardware_Hardware_1Test_ReturnCOM2Result
         (JNIEnv *env, jobject thiz) {
     return test_com(COM2, COM1);
 }
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_example_cmi_1at154_1test_MainActivity_ReturnCOM3Result
+Java_Hardware_Hardware_1Test_ReturnCOM3Result
         (JNIEnv *env, jobject thiz) {
     return test_com(COM3, COM4);
 }
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_example_cmi_1at154_1test_MainActivity_ReturnCOM4Result
+Java_Hardware_Hardware_1Test_ReturnCOM4Result
         (JNIEnv *env, jobject thiz) {
     return test_com(COM4, COM3);
 }
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_example_cmi_1at154_1test_MainActivity_ReturnUSBResult
+Java_Hardware_Hardware_1Test_ReturnMIO1Result
         (JNIEnv *env, jobject thiz) {
     return 1;
 }
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_example_cmi_1at154_1test_MainActivity_ReturnGPSResult
+Java_Hardware_Hardware_1Test_ReturnUSB1Result
         (JNIEnv *env, jobject thiz) {
     return 1;
 }
 
-extern "C"
-JNIEXPORT jint JNICALL
-Java_com_example_cmi_1at154_1test_MainActivity_ReturnWIFIResult
-        (JNIEnv *env, jobject thiz) {
-    return 0;
-}
-
-extern "C"
-JNIEXPORT jint JNICALL
-Java_com_example_cmi_1at154_1test_MainActivity_Return4GResult
-        (JNIEnv *env, jobject thiz) {
-    return 0;
-}
