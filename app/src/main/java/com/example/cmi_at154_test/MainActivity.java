@@ -6,7 +6,6 @@ import androidx.core.content.ContextCompat;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
-import android.provider.MediaStore;
 import android.widget.ImageView;
 
 import Hardware.Hardware_Test;

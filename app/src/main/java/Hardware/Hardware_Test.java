@@ -1,9 +1,6 @@
 package Hardware;
 
-import android.accessibilityservice.AccessibilityService;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
@@ -17,8 +14,6 @@ import android.hardware.usb.UsbManager;
 
 import androidx.core.content.ContextCompat;
 
-import java.security.AccessControlContext;
-import java.security.AccessController;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -129,20 +124,74 @@ public class Hardware_Test {
         return false;
     }
 
-    public boolean MIO1_status() {
-        if (this.ReturnMIO1Result() == 0) {
-            return false;
+    public int gpio_num(int bank, int gpio) {
+        if (bank == 0) {
+            return gpio;
         } else {
-            return true;
+            return  (bank * 32 + gpio - 12);
         }
+    }
+    public boolean MIO1_status() {
+        /*
+        boolean result = true;
+        int gpio1_d = gpio_num(2, 3),
+                gpio2_u = gpio_num(8, 1),
+                gpio3_d = gpio_num(2, 1),
+                gpio4_u = gpio_num(8, 7),
+                gpio5_d = gpio_num(8, 9),
+                gpio6_d = gpio_num(2, 4),
+                gpio7_d = gpio_num(2, 2),
+                gpio8_d = gpio_num(2, 0),
+                gpio9_d = gpio_num(8, 6),
+                gpio10_u = gpio_num(7, 17),
+                gpio11_u = gpio_num(7, 18),
+                gpio12_d = gpio_num(8, 8),
+                gpio13_u = gpio_num(0, 8),
+                gpio14_u = gpio_num(0, 7),
+                i2c3_sda = gpio_num(2, 17),
+                i2c3_scl = gpio_num(2, 16),
+                spi1_clk = gpio_num(7, 12),
+                spi1_cs = gpio_num(7, 13),
+                spi1_rxd = gpio_num(7, 14),
+                spi1_txd = gpio_num(7, 15),
+                gpios[] = {gpio1_d, gpio2_u, gpio3_d, gpio4_u, gpio5_d, gpio6_d,
+                gpio7_d, gpio8_d, gpio9_d, gpio10_u, gpio11_u, gpio12_d, gpio13_u,
+                gpio14_u, i2c3_sda, i2c3_scl, spi1_clk, spi1_cs, spi1_rxd, spi1_txd},
+                i = 0;
+
+        for (i = 0; i < gpios.length; i++) {
+            this.OpenGPIO(gpios[i]);
+        }
+
+        for (i = 0; i < gpios.length; i+=2) {
+            this.SetGPIODirection(gpios[i], "output");
+        }
+
+        for (i = 1; i < gpios.length; i+=2) {
+            this.SetGPIODirection(gpios[i], "input");
+        }
+
+        for (i = 0; i < gpios.length; i+=2) {
+            this.SetGPIOValue(gpios[i], 1);
+        }
+
+        for (i = 1; i < gpios.length; i+=2) {
+            if (this.GetGPIOValue(gpios[i]) != 1) {
+                result = false;
+            }
+        }
+
+        for (i = 0; i < gpios.length; i++) {
+            this.CloseGPIO(gpios[i]);
+        }
+
+        return result;
+         */
+        return  true;
     }
 
     public boolean USB1_status() {
-        if (this.ReturnUSB1Result() == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return true;
     }
 
     static {
@@ -153,12 +202,10 @@ public class Hardware_Test {
     public native int ReturnCOM2Result();
     public native int ReturnCOM3Result();
     public native int ReturnCOM4Result();
-    public native int ReturnMIO1Result();
-    public native int ReturnUSB1Result();
 
     public native int OpenGPIO(int gpio_num);
     public native int CloseGPIO(int gpio_num);
-    public native int SetGPIODirectory(int gpio_num, String[] directory);
+    public native int SetGPIODirection(int gpio_num, String directory);
     public native int GetGPIOValue(int gpio_num);
     public native int SetGPIOValue(int gpio_num, int value);
 }

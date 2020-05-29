@@ -16,6 +16,8 @@
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 // info log
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
+#define LOGW(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
 
 static bool config_uart(int uart_fd, int speed) {
     static  struct termios termold, termnew;
@@ -168,12 +170,13 @@ Java_Hardware_Hardware_1Test_ReturnCOM4Result
     return test_com(COM4, COM3);
 }
 
-static int OpenCloseGpio(char *file_name, int gpio_num) {
+static int OpenCloseGPIO(char *file_name, int gpio_num) {
     int fd = -1 , ret = -1;
     char gpio_num_chr[8] = "";
 
     fd = open(file_name, O_WRONLY);
     if (fd < 0) {
+        LOGE("%s open faile\n", file_name);
         return -1;
     }
 
@@ -195,37 +198,39 @@ extern "C"
 JNIEXPORT jint JNICALL
 Java_Hardware_Hardware_1Test_OpenGPIO
         (JNIEnv *env, jobject thiz, jint gpio_num) {
-    return OpenCloseGpio("/sys/class/gpio/export", gpio_num);
+    return OpenCloseGPIO("/sys/class/gpio/export", gpio_num);
 }
 
 extern "C"
 JNIEXPORT jint JNICALL
 Java_Hardware_Hardware_1Test_CloseGPIO
         (JNIEnv *env, jobject thiz, jint gpio_num) {
-    return OpenCloseGpio("/sys/class/gpio/unexport", gpio_num);
+    return OpenCloseGPIO("/sys/class/gpio/unexport", gpio_num);
 }
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_Hardware_Hardware_1Test_SetGPIODirectory
-        (JNIEnv *env, jobject thiz, jint gpio_num, jstring java_directory) {
+Java_Hardware_Hardware_1Test_SetGPIODirection
+        (JNIEnv *env, jobject thiz, jint gpio_num, jstring java_direction) {
     int fd = -1, ret = -1;
     char file_name[32] = "";
-    const char *directory;
+    const char *direction;
 
-    directory = env->GetStringUTFChars(java_directory, 0);
-    if (directory == NULL) {
+    direction = env->GetStringUTFChars(java_direction, 0);
+    if (direction == NULL) {
         return -1;
     }
 
-    sprintf(file_name, "/sys/class/gpio/gpio%d/directory", gpio_num);
+    sprintf(file_name, "/sys/class/gpio/gpio%d/direction", gpio_num);
+
+    LOGI("set gpio %s  %s", file_name, direction);
 
     fd = open(file_name, O_WRONLY);
     if (fd < 0) {
         return -1;
     }
 
-    ret = write(fd, directory, sizeof(directory));
+    ret = write(fd, direction, sizeof(direction));
     if (ret < 0) {
         close(fd);
         return -1;
@@ -245,6 +250,8 @@ Java_Hardware_Hardware_1Test_GetGPIOValue
     char file_name[32] = "", value;
 
     sprintf(file_name, "/sys/class/gpio/gpio%d/value", gpio_num);
+
+    LOGI("read %s \n", file_name);
 
     fd = open(file_name, O_RDONLY);
     if (fd < 0) {
@@ -270,6 +277,8 @@ Java_Hardware_Hardware_1Test_SetGPIOValue
     sprintf(file_name, "/sys/class/gpio/gpio%d/value", gpio_num);
     sprintf(value_chr, "%d", value);
 
+    LOGI("set  %s  %s \n", file_name, value_chr);
+
     fd = open(file_name, O_WRONLY);
     if (fd < 0) {
         return -1;
@@ -285,19 +294,5 @@ Java_Hardware_Hardware_1Test_SetGPIOValue
 
     close(fd);
     return 0;
-}
-
-extern "C"
-JNIEXPORT jint JNICALL
-Java_Hardware_Hardware_1Test_ReturnMIO1Result
-        (JNIEnv *env, jobject thiz) {
-    return 1;
-}
-
-extern "C"
-JNIEXPORT jint JNICALL
-Java_Hardware_Hardware_1Test_ReturnUSB1Result
-        (JNIEnv *env, jobject thiz) {
-    return 1;
 }
 
